@@ -1,4 +1,4 @@
-import React from 'react';
+
 import IntroSection from './IntroSection';
 import Description from "./Description"
 
