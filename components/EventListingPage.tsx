@@ -91,14 +91,14 @@ export default function EventListingPage() {
           ✦ Upcoming Events
         </span>
       </h2>
-      <div className="flex justify-between px-10 mt-10">
+      <div className="md:flex justify-between sm:px-10 mt-10">
         <label className="block mb-2 text-white">
           Filter by category:
           <input
             type="text"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="ml-2 p-1 border text-white bg-gray-600 border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
+            className="max-w-[90vw] sm:ml-2 p-1 border text-white bg-gray-600 border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
           />
         </label>
         <button

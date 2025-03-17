@@ -10,11 +10,11 @@ export default function Navigation() {
   }
   return (
     <>
-      <header className="fixed w-4/5 box-border h-[7%] mt-2 flex justify-between items-center shadow-md inset-shadow-md shadow-zinc-400 rounded-full bg-zinc-300 px-8 text-xl">
-        <img src="/logo.png" className="w-36 h-auto " />
+      <header className="fixed w-4/5 box-border h-[7%] mt-2 flex justify-between min-h-[40px] items-center shadow-md inset-shadow-md shadow-zinc-400 rounded-full bg-zinc-300 px-8 text-xl">
+        <img src="/logo.png" className="w-20 sm:w-36 h-auto " />
         <img
           src="hamburger.png"
-          className="w-14"
+          className="w-8 md:w-12 lg:hidden"
           onClick={() => {
             setOpenMenu(true);
           }}
