@@ -28,7 +28,7 @@ export default function Description() {
             <div className="my-6 xl:m-6 w-full xl:w-2/3 rounded-2xl h-3/4 bg-black bg-opacity-85 shadow-xl flex flex-col items-start p-6">
               <img src="unify.png" alt="" className="" />
               <h4 className="text-xl text-start text-gray-50 font-semibold">Unifying Communities</h4>
-              <p className=" my-auto text-start text-gray-300 font-medium">
+              <p className=" my-auto text-start overflow-hidden text-gray-300 font-medium">
                 Communion bridges diverse religious communities, becoming the
                 social
               </p>
@@ -43,7 +43,7 @@ export default function Description() {
             <div className="my-6 xl:m-6 w-full xl:w-2/3 rounded-2xl h-3/4 bg-black bg-opacity-85 shadow-xl flex flex-col items-start p-6">
               <img src="promo.png" alt="" className="" />
               <h4 className="text-xl text-start text-gray-50 font-semibold">Promoting Unity</h4>
-              <p className=" my-auto text-start text-gray-300 font-medium">
+              <p className=" my-auto text-start overflow-hidden text-gray-300 font-medium">
               We foster understanding and harmony between different faith communities through
               </p>
             </div>
