@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {motion} from 'framer-motion'
 
 export default function Navigation() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -40,7 +41,12 @@ export default function Navigation() {
         </nav>
       </header>
       {openMenu && (
-        <div className="fixed z-50 top-0 right-0 transition-all bg-gray-100 h-screen w-screen">
+        <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="fixed z-50 top-0 right-0 bg-gray-100 h-screen w-screen">
           <button className="absolute top-0 right-0 w-20 h-20 p-5">
             {" "}
             <img
@@ -70,7 +76,7 @@ export default function Navigation() {
               About
             </Link>
           </div>
-        </div>
+          </motion.div>
       )}
     </>
   );

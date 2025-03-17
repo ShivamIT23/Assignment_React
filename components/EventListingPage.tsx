@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 interface EventForm {
   title: string;
@@ -45,12 +46,19 @@ export default function EventListingPage() {
       location: "City Park",
       category: "Charity",
     },
+    {
+      title: "Community Meetup",
+      date: "2025-03-20",
+      location: "Community Hall",
+      category: "Social",
+    },
+    {
+      title: "Charity Run",
+      date: "2025-03-22",
+      location: "City Park",
+      category: "Charity",
+    },
   ]);
-
-  const changeMenu =() =>{
-    setOpenEvent(false);
-  }
-
 
   const [newEvent, setNewEvent] = React.useState({
     title: "",
@@ -70,16 +78,16 @@ export default function EventListingPage() {
   };
 
   const filteredEvents = filter
-    ? events.filter(
-      (event) => event.category.toLowerCase().includes(filter.toLowerCase())
+    ? events.filter((event) =>
+        event.category.toLowerCase().includes(filter.toLowerCase())
       )
     : events;
 
   return (
-    <div className="min-h-screen mt-24 p-4 bg-black">
-      <h2 className="text-3xl text-zinc-100 text-center mb-4 font-medium">
+    <div className="min-h-screen mt-24 p-4 bg-gradient-to-r from-black to-gray-800">
+      <h2 className="text-4xl text-zinc-100 text-center mb-4 font-medium">
         We Helped Communities Connect & Flourish
-        <span className="block text-blue-300 font-medium">
+        <span className="block text-blue-300 font-semibold">
           ✦ Upcoming Events
         </span>
       </h2>
@@ -90,50 +98,53 @@ export default function EventListingPage() {
             type="text"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="ml-2 p-1 border text-white bg-gray-600 border-gray-700 rounded"
+            className="ml-2 p-1 border text-white bg-gray-600 border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
           />
         </label>
         <button
-          className="bg-blue-200 px-2 my-2 text-black font-medium"
-          onClick={() => {
-            setOpenEvent(true);
-          }}
+          className="bg-gradient-to-r from-blue-500 to-indigo-600 px-4 py-2 my-2 text-white font-medium rounded hover:scale-105 transition-transform duration-300 shadow-lg"
+          onClick={() => setOpenEvent(true)}
         >
-          New Event
+          + New Event
         </button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 w-full min-h-fit h-full gap-8">
         {filteredEvents.map((event, index) => (
-          <div
+          <motion.div
             key={index}
-            className="col-span-1 p-4 m-8 bg-white rounded shadow-md"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="col-span-1 p-4 m-8 bg-white rounded shadow-md hover:shadow-xl transition-shadow duration-300"
           >
-            <img src="event1.jpeg" alt="" className="" />
-            <h3 className="text-xl font-semibold">{event.title}</h3>
-            <p>
+            <img src="event1.jpeg" alt="" className="rounded-t-lg" />
+            <h3 className="text-xl font-semibold mt-2">{event.title}</h3>
+            <p className="text-gray-600">
               {event.date} — {event.location}
             </p>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-gray-500 font-medium">
               Category: {event.category}
             </span>
-          </div>
+          </motion.div>
         ))}
       </div>
 
       {openEvent && (
-        <div className="bg-gray-100 fixed top-1/2 translate-x-1/2 -translate-y-1/2 right-1/2 h-full w-full flex flex-col justify-center items-center">
-          <button className="absolute top-0 right-0 w-20 h-20 p-5">
-            <img
-              src="close.png"
-              alt=""
-              onClick={changeMenu}
-            />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.4 }}
+          className="bg-gray-100 fixed top-0 right-0 h-full w-full flex flex-col justify-center items-center shadow-2xl rounded-lg"
+        >
+          <button className="absolute top-4 right-4 w-10 h-10">
+            <img src="close.png" alt="" onClick={() => setOpenEvent(false)} />
           </button>
           <form
             onSubmit={handleAddEvent}
-            className="mt-6 p-4 bg-white rounded shadow-md"
+            className="mt-6 p-6 bg-white rounded shadow-md w-1/2 space-y-4"
           >
-            <h3 className="text-xl font-semibold mb-2">Add New Event</h3>
+            <h3 className="text-2xl font-semibold mb-2">Add New Event</h3>
             <input
               type="text"
               placeholder="Title"
@@ -141,7 +152,7 @@ export default function EventListingPage() {
               onChange={(e) =>
                 setNewEvent({ ...newEvent, title: e.target.value })
               }
-              className="block w-full p-2 mb-2 border rounded"
+              className="block w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
             />
             <input
               type="date"
@@ -149,7 +160,7 @@ export default function EventListingPage() {
               onChange={(e) =>
                 setNewEvent({ ...newEvent, date: e.target.value })
               }
-              className="block w-full p-2 mb-2 border rounded"
+              className="block w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
             />
             <input
               type="text"
@@ -158,13 +169,13 @@ export default function EventListingPage() {
               onChange={(e) =>
                 setNewEvent({ ...newEvent, category: e.target.value })
               }
-              className="block w-full p-2 mb-2 border rounded"
+              className="block w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
             />
-            <button className="mt-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition">
+            <button className="mt-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition hover:scale-105">
               Add Event
             </button>
           </form>
-        </div>
+        </motion.div>
       )}
     </div>
   );
